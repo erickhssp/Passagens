@@ -1,21 +1,16 @@
 ﻿namespace Passagens
 {
-    class ClienteService : IclienteService
+    public class ClienteService : IClienteService
     {
-        private readonly ClienteDAO dao;
-
-        public ClienteService(ClienteDAO clienteDAO)
+        public Cliente Buscar(string nome)
         {
-            this.dao = clienteDAO;
+            ClienteDAO dao = new ClienteDAO();
+            return dao.Buscar(nome);
         }
         public void Add(Cliente c)
         {
+            ClienteDAO dao = new ClienteDAO();
             dao.Add(c);
-        }
-
-        public Cliente Buscar(string nome)
-        {
-            return dao.Buscar(nome);
         }
     }
 }

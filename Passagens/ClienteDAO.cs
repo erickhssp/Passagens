@@ -3,18 +3,18 @@ using System.Linq;
 
 namespace Passagens
 {
-    class ClienteDAO
+    public class ClienteDAO
     {
-        private static IList<Cliente> clientes = new List<Cliente>();
+        private static List<Cliente> clientes = new List<Cliente>();
 
         public void Add(Cliente c)
         {
-            ClienteDAO.clientes.Add(c);
+           ClienteDAO.clientes.Add(c);
         }
 
         public Cliente Buscar(string nome)
         {
-            var resultado = ClienteDAO.clientes.Where(c => c.Nome.Equals(nome));
+            var resultado = ClienteDAO.clientes.Where(c => c.Nome.Equals(nome)).FirstOrDefault();
             return (Cliente)resultado;
         }
     }
