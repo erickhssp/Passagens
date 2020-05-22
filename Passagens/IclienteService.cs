@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+using System.ServiceModel.Web;
 
 namespace Passagens
 {
@@ -11,10 +8,15 @@ namespace Passagens
     public interface IClienteService
     {
         [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Xml, UriTemplate = "SearchCliente/{nome}")]
         Cliente Buscar(string nome);
 
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Xml, UriTemplate = "addCliente/{nome};{cpf}")]
         [OperationContract]
-        void Add(Cliente c);
+        bool Add(string nome, string cpf);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Xml, UriTemplate = "getClientes/")]
+        List<Cliente> getClientes();
     }
 }
